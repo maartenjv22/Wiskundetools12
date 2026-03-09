@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Over ons - Rekenmeester</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+
+  <style>
+    :root {
+      --accent: #4da3ff;
+      --accent-dark: #2d7fe0;
+      --accent-light: #7ec3ff;
+      --purple: #8b5cf6;
+      --card-bg: rgba(15, 18, 30, 0.70);
+      --card-border: rgba(255,255,255,0.10);
+      --text-soft: rgba(255,255,255,0.85);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background:
+        linear-gradient(rgba(10, 15, 28, 0.72), rgba(8, 10, 18, 0.82)),
+        url("achtergrond.jpg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      color: white;
+      min-height: 100vh;
+    }
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 82px;
+      display: flex;
+      align-items: center;
+      padding: 0 28px;
+      background: rgba(8, 12, 22, 0.55);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      z-index: 1000;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 18px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .brand img {
+      width: 24px;
+      height: 24px;
+      filter: brightness(0) invert(1);
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 120px 20px 40px;
+    }
+
+    .content-box {
+      width: 100%;
+      max-width: 900px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      padding: 32px;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.30);
+    }
+
+    h1 {
+      margin-top: 0;
+      margin-bottom: 12px;
+      font-size: 40px;
+      background: linear-gradient(90deg, #ffffff, var(--accent-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    h2 {
+      margin-top: 28px;
+      margin-bottom: 10px;
+      color: var(--accent-light);
+      font-size: 24px;
+    }
+
+    p {
+      color: rgba(255,255,255,0.9);
+      line-height: 1.7;
+      margin-bottom: 14px;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+      margin-top: 20px;
+    }
+
+    .info-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 18px;
+      padding: 20px;
+    }
+
+    .info-card h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      color: white;
+      font-size: 20px;
+    }
+
+    .faq-item {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 18px;
+      padding: 18px;
+      margin-top: 14px;
+    }
+
+    .faq-item strong {
+      display: block;
+      color: white;
+      margin-bottom: 8px;
+    }
+
+    .button-row {
+      display: flex;
+      gap: 12px;
+      margin-top: 26px;
+      flex-wrap: wrap;
+    }
+
+    .back-btn {
+      display: inline-block;
+      padding: 12px 18px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.2s;
+      box-shadow: 0 8px 18px rgba(77, 163, 255, 0.22);
+    }
+
+    .back-btn:hover {
+      background: linear-gradient(135deg, var(--accent-light), var(--accent));
+    }
+
+    @media (max-width: 700px) {
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        font-size: 32px;
+      }
+
+      .content-box {
+        padding: 22px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="navbar">
+    <a href="index.html" class="brand">
+      <img src="favicon.png" alt="Logo">
+      <span>∑ Rekenmeester</span>
+    </a>
+  </header>
+
+  <main class="page">
+    <section class="content-box">
+      <h1>Over ons</h1>
+      <p>
+        Welkom bij Rekenmeester. Deze website is gemaakt als informatica-project
+        om wiskundeformules op een duidelijke en interactieve manier te laten zien.
+      </p>
+      <p>
+        Met deze website kun je verschillende formules invullen en meteen een uitkomst krijgen.
+        Het doel is om rekenen overzichtelijker, sneller en makkelijker te maken.
+      </p>
+
+      <div class="info-grid">
+        <div class="info-card">
+          <h3>Doel van de website</h3>
+          <p>
+            Rekenmeester helpt gebruikers bij het uitrekenen van bekende wiskundige formules,
+            zoals de ABC-formule, Pythagoras, goniometrie, standaardafwijking en exponentiële groei.
+          </p>
+        </div>
+
+        <div class="info-card">
+          <h3>Voor wie?</h3>
+          <p>
+            Deze website is bedoeld voor leerlingen, docenten en andere gebruikers
+            die snel een formule willen toepassen en het antwoord direct willen zien.
+          </p>
+        </div>
+      </div>
+
+      <h2>Veelgestelde vragen</h2>
+
+      <div class="faq-item">
+        <strong>Hoe gebruik ik de website?</strong>
+        Kies op de homepagina een formule, vul de waarden in en klik op de knop om het resultaat te berekenen.
+      </div>
+
+      <div class="faq-item">
+        <strong>Moet ik alles exact invullen?</strong>
+        Ja, vul de waarden zo nauwkeurig mogelijk in zodat de berekening goed uitgevoerd wordt.
+      </div>
+
+      <div class="faq-item">
+        <strong>Kan ik meerdere tools gebruiken?</strong>
+        Ja, je kunt vrij tussen de verschillende pagina’s wisselen en meerdere formules gebruiken.
+      </div>
+
+      <div class="faq-item">
+        <strong>Waarom hebben jullie deze website gemaakt?</strong>
+        Deze website is gemaakt voor een schoolproject informatica, waarbij we een interactieve website moesten bouwen met wiskundige tools.
+      </div>
+
+      <div class="button-row">
+        <a href="index.html" class="back-btn">Terug naar home</a>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
