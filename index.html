@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rekenmeester.online</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+
+  <style>
+    :root {
+      --accent: #4da3ff;
+      --accent-dark: #2d7fe0;
+      --accent-light: #7ec3ff;
+      --purple: #8b5cf6;
+      --card-bg: rgba(15, 18, 30, 0.70);
+      --card-border: rgba(255,255,255,0.10);
+      --text-soft: rgba(255,255,255,0.85);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background:
+        linear-gradient(rgba(10, 15, 28, 0.72), rgba(8, 10, 18, 0.82)),
+        url("achtergrond.jpg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      color: white;
+      min-height: 100vh;
+    }
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 82px;
+      display: flex;
+      align-items: center;
+      padding: 0 28px;
+      background: rgba(8, 12, 22, 0.55);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      z-index: 1000;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 18px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      min-width: 260px;
+    }
+
+    .brand img {
+      width: 24px;
+      height: 24px;
+      filter: brightness(0) invert(1);
+    }
+
+    .scroll-banner {
+      overflow: hidden;
+      white-space: nowrap;
+      flex: 1;
+      margin-left: 18px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+    }
+
+    .scroll-text {
+      display: inline-block;
+      padding-left: 100%;
+      animation: scroll-left 18s linear infinite;
+      color: var(--accent-light);
+      font-size: 14px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-shadow: 0 0 8px rgba(77, 163, 255, 0.35);
+    }
+
+    @keyframes scroll-left {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-100%); }
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 130px 20px 70px;
+    }
+
+    .hero-box {
+      width: 100%;
+      max-width: 920px;
+      text-align: center;
+      background: linear-gradient(
+        135deg,
+        rgba(77, 163, 255, 0.16),
+        rgba(139, 92, 246, 0.16)
+      );
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 28px;
+      box-shadow: 0 18px 50px rgba(0,0,0,0.35);
+      padding: 58px 30px 48px;
+      margin-bottom: 42px;
+    }
+
+    .hero-box h1 {
+      margin: 0 0 16px;
+      font-size: 60px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      background: linear-gradient(90deg, #ffffff, var(--accent-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-box p {
+      margin: 0;
+      font-size: 18px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.92);
+    }
+
+    .section-title {
+      width: 100%;
+      max-width: 1100px;
+      font-size: 30px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      text-align: left;
+      color: white;
+    }
+
+    .section-subtitle {
+      width: 100%;
+      max-width: 1100px;
+      margin-bottom: 26px;
+      color: var(--text-soft);
+      font-size: 16px;
+      letter-spacing: 0.5px;
+    }
+
+    .formula-grid {
+      width: 100%;
+      max-width: 1100px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 22px;
+      margin-bottom: 42px;
+    }
+
+    .formula-card,
+    .info-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 22px;
+      padding: 22px;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.28);
+      transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+
+    .formula-card:hover,
+    .info-card:hover {
+      transform: translateY(-8px);
+      background: rgba(18, 23, 38, 0.88);
+      border-color: var(--accent);
+      box-shadow: 0 18px 38px rgba(77, 163, 255, 0.18);
+    }
+
+    .card-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, var(--accent), var(--purple));
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      margin-bottom: 18px;
+      box-shadow: 0 8px 20px rgba(77, 163, 255, 0.25);
+    }
+
+    .formula-card h3,
+    .info-card h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      font-size: 22px;
+      letter-spacing: 1px;
+      color: white;
+    }
+
+    .formula-card p,
+    .info-card p {
+      margin-top: 0;
+      margin-bottom: 18px;
+      color: rgba(255,255,255,0.88);
+      line-height: 1.5;
+      text-transform: none;
+      letter-spacing: 0.4px;
+    }
+
+    .formula-card p {
+      min-height: 48px;
+    }
+
+    .card-btn {
+      display: inline-block;
+      padding: 11px 18px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.2s;
+      box-shadow: 0 8px 18px rgba(77, 163, 255, 0.22);
+    }
+
+    .card-btn:hover {
+      background: linear-gradient(135deg, var(--accent-light), var(--accent));
+      transform: translateY(-1px);
+    }
+
+    .info-section {
+      width: 100%;
+      max-width: 1100px;
+    }
+
+    .info-card {
+      max-width: 420px;
+    }
+
+    @media (max-width: 800px) {
+      .navbar {
+        height: 96px;
+        align-items: flex-start;
+        padding-top: 15px;
+      }
+
+      .brand {
+        min-width: auto;
+      }
+
+      .scroll-banner {
+        position: absolute;
+        left: 20px;
+        right: 20px;
+        top: 55px;
+        margin-left: 0;
+      }
+
+      .hero-box h1 {
+        font-size: 42px;
+      }
+
+      .hero-box p {
+        font-size: 15px;
+      }
+
+      .section-title,
+      .section-subtitle {
+        text-align: center;
+      }
+
+      .info-card {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="navbar">
+    <a href="index.html" class="brand">
+      <img src="favicon.png" alt="Logo">
+      <span>∑ Rekenmeester</span>
+    </a>
+
+    <div class="scroll-banner">
+      <div class="scroll-text">
+        Welkom bij Rekenmeester • Bereken snel wiskundeformules • ABC • Pythagoras • Goniometrie • Standaardafwijking • Exponentiële groei •
+      </div>
+    </div>
+  </header>
+
+  <main class="hero">
+    <section class="hero-box">
+      <h1>Welkom</h1>
+      <p>Reken hier met verschillende formules en handige wiskundetools.</p>
+    </section>
+
+    <div class="section-title">Wiskunde tools</div>
+    <div class="section-subtitle">Kies hieronder een formule en ga direct aan de slag.</div>
+
+    <section class="formula-grid">
+      <div class="formula-card">
+        <div class="card-icon">x²</div>
+        <h3>ABC formule</h3>
+        <p>Los vergelijkingen van de vorm ax² + bx + c = 0 op.</p>
+        <a href="abc.html" class="card-btn">Open</a>
+      </div>
+
+      <div class="formula-card">
+        <div class="card-icon">△</div>
+        <h3>Pythagoras</h3>
+        <p>Bereken een zijde van een rechthoekige driehoek.</p>
+        <a href="pythagoras.html" class="card-btn">Open</a>
+      </div>
+
+      <div class="formula-card">
+        <div class="card-icon">∠</div>
+        <h3>Goniometrie</h3>
+        <p>Werk met sin, cos en tan bij hoeken en zijdes.</p>
+        <a href="goniometrie.html" class="card-btn">Open</a>
+      </div>
+
+      <div class="formula-card">
+        <div class="card-icon">σ</div>
+        <h3>Standaardafwijking</h3>
+        <p>Bereken de spreiding van een rij getallen.</p>
+        <a href="sigma.html" class="card-btn">Open</a>
+      </div>
+
+      <div class="formula-card">
+        <div class="card-icon">↗</div>
+        <h3>Exponentiële groei</h3>
+        <p>Reken groei en afname uit met formules.</p>
+        <a href="groei.html" class="card-btn">Open</a>
+      </div>
+    </section>
+
+    <section class="info-section">
+      <div class="section-title">Meer over de website</div>
+      <div class="section-subtitle">Lees meer over het team en bekijk de veelgestelde vragen.</div>
+
+      <div class="info-card">
+        <div class="card-icon">i</div>
+        <h3>Over ons en FAQ</h3>
+        <p>Bekijk meer informatie over Rekenmeester, het doel van de website en antwoorden op veelgestelde vragen.</p>
+        <a href="overons.html" class="card-btn">Open</a>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
