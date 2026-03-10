@@ -1,396 +1,359 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rekenmeester.online</title>
-  <link rel="icon" type="image/png" href="favicon.png">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rekenmeester.online</title>
+<link rel="icon" type="image/png" href="favicon.png">
 
-  <style>
-    :root {
-      --accent: #4da3ff;
-      --accent-dark: #2d7fe0;
-      --accent-light: #7ec3ff;
-      --purple: #8b5cf6;
-      --card-bg: rgba(15, 18, 30, 0.70);
-      --card-border: rgba(255,255,255,0.10);
-      --text-soft: rgba(255,255,255,0.85);
-    }
+<style>
 
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background:
-        linear-gradient(rgba(10, 15, 28, 0.72), rgba(8, 10, 18, 0.82)),
-        url("achtergrond.jpg");
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      color: white;
-      min-height: 100vh;
-    }
-
-    .navbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 82px;
-      display: flex;
-      align-items: center;
-      padding: 0 28px;
-      background: rgba(8, 12, 22, 0.55);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      z-index: 1000;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 18px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      min-width: 260px;
-    }
-    
-    .scroll-banner {
-      overflow: hidden;
-      flex: 1;
-      margin-left: 18px;
-      height: 28px;
-      display: flex;
-      align-items: center;
-      position: relative;
-    }
-
-    .scroll-track {
-      display: flex;
-      width: max-content;
-      animation: scroll-loop 24s linear infinite;
-    }
-
-    .scroll-text {
-      flex-shrink: 0;
-      padding-right: 60px;
-      color: var(--accent-light);
-      font-size: 14px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      text-shadow: 0 0 10px rgba(77, 163, 255, 0.28);
-      white-space: nowrap;
-    }
-
-    @keyframes scroll-loop {
-      0% {
-        transform: translateX(0);
-      }
-      100% {
-        transform: translateX(-50%);
-      }
-    }
-
-   .hero {
-  min-height: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 110px 20px 50px;
+:root{
+--accent:#4da3ff;
+--accent-dark:#2d7fe0;
+--accent-light:#7ec3ff;
+--purple:#8b5cf6;
+--card-bg:rgba(15,18,30,0.70);
+--card-border:rgba(255,255,255,0.10);
+--text-soft:rgba(255,255,255,0.85);
 }
 
-.hero-box {
-  width: 100%;
-  max-width: 1100px;
-  display: flex;
-  justify-content: flex-end;
-  background: transparent;
-  box-shadow: none;
-  border: none;
-  padding: 0;
-  margin-bottom: 28px;
+*{
+box-sizing:border-box;
 }
 
-.hero-box-compact {
-  text-align: left;
+body{
+margin:0;
+font-family:Arial,sans-serif;
+background:
+linear-gradient(rgba(10,15,28,0.72),rgba(8,10,18,0.82)),
+url("achtergrond.jpg");
+background-size:cover;
+background-position:center;
+background-repeat:no-repeat;
+color:white;
+min-height:100vh;
 }
 
-.hero-box-compact p {
-  max-width: 460px;
-  margin: 0;
-  font-size: 16px;
-  letter-spacing: 0.5px;
-  text-transform: none;
-  color: rgba(255,255,255,0.86);
-  line-height: 1.6;
+.navbar{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:82px;
+display:flex;
+align-items:center;
+padding:0 28px;
+background:rgba(8,12,22,0.55);
+backdrop-filter:blur(10px);
+border-bottom:1px solid rgba(255,255,255,0.08);
+z-index:1000;
 }
 
-.hero-kicker {
-  font-size: 13px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--accent-light);
-  margin-bottom: 10px;
-  font-weight: bold;
+.brand{
+display:flex;
+align-items:center;
+color:white;
+text-decoration:none;
+font-weight:bold;
+font-size:18px;
+letter-spacing:2px;
+text-transform:uppercase;
 }
 
-    .section-title {
-      width: 100%;
-      max-width: 1100px;
-      font-size: 30px;
-      font-weight: bold;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      margin-bottom: 10px;
-      text-align: left;
-      color: white;
-    }
-
-    .section-subtitle {
-      width: 100%;
-      max-width: 1100px;
-      margin-bottom: 26px;
-      color: var(--text-soft);
-      font-size: 16px;
-      letter-spacing: 0.5px;
-    }
-
-    .formula-grid {
-      width: 100%;
-      max-width: 1100px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-      gap: 22px;
-      margin-bottom: 42px;
-    }
-
-    .formula-card,
-    .info-card {
-      text-decoration: none;
-      color: white;
-      display: block;
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 22px;
-      padding: 22px;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      box-shadow: 0 12px 30px rgba(0,0,0,0.28);
-      transition:
-        transform 0.28s ease,
-        background 0.28s ease,
-        box-shadow 0.28s ease,
-        border-color 0.28s ease;
-      animation: fade-up 0.8s ease;
-    }
-
-    .formula-card:hover,
-    .info-card:hover {
-      transform: translateY(-10px) scale(1.015);
-      background: rgba(20, 26, 42, 0.92);
-      border-color: rgba(126, 195, 255, 0.55);
-      box-shadow:
-        0 22px 45px rgba(0,0,0,0.30),
-        0 0 24px rgba(77, 163, 255, 0.18);
-    }
-
-    .formula-card:hover .card-icon,
-    .info-card:hover .card-icon {
-      transform: scale(1.08);
-      box-shadow: 0 10px 26px rgba(77, 163, 255, 0.40);
-    }
-
-    .card-icon {
-      width: 56px;
-      height: 56px;
-      border-radius: 16px;
-      background: linear-gradient(135deg, var(--accent), var(--purple));
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 24px;
-      margin-bottom: 18px;
-      box-shadow: 0 8px 20px rgba(77, 163, 255, 0.25);
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-    }
-
-   .formula-card h3,
-.info-card h3 {
-  margin-top: 0;
-  margin-bottom: 8px;
-  font-size: 20px;
-  letter-spacing: 0.5px;
-  color: white;
+.scroll-banner{
+overflow:hidden;
+flex:1;
+margin-left:18px;
+height:28px;
+display:flex;
+align-items:center;
 }
 
-   .formula-card p,
-.info-card p {
-  margin-top: 0;
-  margin-bottom: 0;
-  color: rgba(255,255,255,0.78);
-  line-height: 1.45;
-  text-transform: none;
-  letter-spacing: 0.2px;
-  font-size: 15px;
+.scroll-track{
+display:flex;
+width:max-content;
+animation:scroll-loop 24s linear infinite;
 }
 
-    .formula-card p {
-      min-height: 48px;
-    }
+.scroll-text{
+flex-shrink:0;
+padding-right:60px;
+color:var(--accent-light);
+font-size:14px;
+letter-spacing:2px;
+text-transform:uppercase;
+text-shadow:0 0 10px rgba(77,163,255,0.28);
+white-space:nowrap;
+}
 
-    .info-section {
-      width: 100%;
-      max-width: 1100px;
-    }
+@keyframes scroll-loop{
+0%{transform:translateX(0);}
+100%{transform:translateX(-50%);}
+}
 
-    .info-card {
-      max-width: 420px;
-      margin-top: 10px;
-    }
+.hero{
+display:flex;
+flex-direction:column;
+align-items:center;
+padding:110px 20px 50px;
+}
 
-    .footer {
-      width: 100%;
-      text-align: center;
-      padding: 20px;
-      margin-top: 40px;
-      font-size: 14px;
-      color: rgba(255,255,255,0.6);
-      border-top: 1px solid rgba(255,255,255,0.08);
-    }
+.hero-box{
+width:100%;
+max-width:1100px;
+display:flex;
+justify-content:flex-end;
+margin-bottom:28px;
+}
 
-    @keyframes fade-up {
-      from {
-        opacity: 0;
-        transform: translateY(16px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
+.hero-box-compact{
+text-align:left;
+}
 
-    @media (max-width: 800px) {
-      .navbar {
-        height: 96px;
-        align-items: flex-start;
-        padding-top: 15px;
-      }
+.hero-kicker{
+font-size:13px;
+letter-spacing:2px;
+text-transform:uppercase;
+color:var(--accent-light);
+margin-bottom:10px;
+font-weight:bold;
+}
 
-      .brand {
-        min-width: auto;
-      }
+.hero-box-compact p{
+max-width:460px;
+margin:0;
+font-size:16px;
+color:rgba(255,255,255,0.86);
+line-height:1.6;
+}
 
-      .scroll-banner {
-        position: absolute;
-        left: 20px;
-        right: 20px;
-        top: 55px;
-        margin-left: 0;
-      }
+.section-title{
+width:100%;
+max-width:1100px;
+font-size:30px;
+font-weight:bold;
+letter-spacing:2px;
+text-transform:uppercase;
+margin-bottom:8px;
+text-align:left;
+}
 
-      .hero-box h1 {
-        font-size: 42px;
-      }
+.section-subtitle{
+width:100%;
+max-width:1100px;
+margin-bottom:20px;
+color:var(--text-soft);
+font-size:16px;
+}
 
-      .hero-box p {
-        font-size: 15px;
-      }
+.formula-grid{
+width:100%;
+max-width:1100px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+gap:22px;
+margin-bottom:42px;
+}
 
-      .section-title,
-      .section-subtitle {
-        text-align: center;
-      }
+.formula-card,
+.info-card{
+text-decoration:none;
+color:white;
+display:block;
+background:var(--card-bg);
+border:1px solid var(--card-border);
+border-radius:22px;
+padding:22px;
+backdrop-filter:blur(10px);
+box-shadow:0 12px 30px rgba(0,0,0,0.28);
+transition:all .28s ease;
+}
 
-      .info-card {
-        max-width: 100%;
-      }
-    }
-  </style>
+.formula-card:hover,
+.info-card:hover{
+transform:translateY(-10px) scale(1.015);
+background:rgba(20,26,42,0.92);
+border-color:rgba(126,195,255,0.55);
+box-shadow:
+0 22px 45px rgba(0,0,0,0.30),
+0 0 24px rgba(77,163,255,0.18);
+}
+
+.card-icon{
+width:56px;
+height:56px;
+border-radius:16px;
+background:linear-gradient(135deg,var(--accent),var(--purple));
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:24px;
+margin-bottom:16px;
+box-shadow:0 8px 20px rgba(77,163,255,0.25);
+}
+
+.formula-card h3,
+.info-card h3{
+margin:0 0 6px 0;
+font-size:20px;
+letter-spacing:.5px;
+}
+
+.formula-card p,
+.info-card p{
+margin:0;
+color:rgba(255,255,255,0.78);
+line-height:1.45;
+font-size:15px;
+}
+
+.info-section{
+width:100%;
+max-width:1100px;
+}
+
+.info-card{
+max-width:420px;
+margin-top:10px;
+}
+
+.footer{
+width:100%;
+text-align:center;
+padding:20px;
+margin-top:40px;
+font-size:14px;
+color:rgba(255,255,255,0.6);
+border-top:1px solid rgba(255,255,255,0.08);
+}
+
+@media(max-width:800px){
+
+.navbar{
+height:96px;
+align-items:flex-start;
+padding-top:15px;
+}
+
+.scroll-banner{
+position:absolute;
+left:20px;
+right:20px;
+top:55px;
+margin-left:0;
+}
+
+.section-title,
+.section-subtitle{
+text-align:center;
+}
+
+.info-card{
+max-width:100%;
+}
+
+}
+
+</style>
 </head>
 
 <body>
-  <header class="navbar">
-    <a href="index.html" class="brand">
-  <span>∑ Rekenmeester</span>
+
+<header class="navbar">
+
+<a href="index.html" class="brand">
+∑ Rekenmeester
 </a>
 
-    <div class="scroll-banner">
-      <div class="scroll-track">
-  <div class="scroll-text">
-    Klik op een formule om te beginnen • Snel, duidelijk en eenvoudig rekenen •
-  </div>
-  <div class="scroll-text">
-    Klik op een formule om te beginnen • Snel, duidelijk en eenvoudig rekenen •
-  </div>
+<div class="scroll-banner">
+<div class="scroll-track">
+
+<div class="scroll-text">
+Klik op een formule om te beginnen • Snel en eenvoudig rekenen •
 </div>
-    </div>
-  </header>
 
-  <main class="hero">
-  <section class="hero-box hero-box-compact">
-    <div class="hero-kicker">Wiskunde tools</div>
-    <p>Kies hieronder een formule en begin direct.</p>
-  </section>
+<div class="scroll-text">
+Klik op een formule om te beginnen • Snel en eenvoudig rekenen •
+</div>
 
-  <div class="section-title">Formules</div>
-  <div class="section-subtitle">Kies een tool.</div>
+</div>
+</div>
 
-  <section class="formula-grid">
-    <a href="abc.html" class="formula-card">
-        <div class="card-icon">x²</div>
-        <h3>ABC formule</h3>
-        <p>Los vergelijkingen van de vorm ax² + bx + c = 0 op.</p>
-      </a>
+</header>
 
-      <a href="pythagoras.html" class="formula-card">
-        <div class="card-icon">△</div>
-        <h3>Pythagoras</h3>
-        <p>Bereken een zijde van een rechthoekige driehoek.</p>
-      </a>
 
-      <a href="goniometrie.html" class="formula-card">
-        <div class="card-icon">∠</div>
-        <h3>Goniometrie</h3>
-        <p>Werk met sin, cos en tan bij hoeken en zijdes.</p>
-      </a>
+<main class="hero">
 
-      <a href="sigma.html" class="formula-card">
-        <div class="card-icon">σ</div>
-        <h3>Standaardafwijking</h3>
-        <p>Bereken de spreiding van een rij getallen.</p>
-      </a>
+<section class="hero-box hero-box-compact">
 
-      <a href="groei.html" class="formula-card">
-        <div class="card-icon">↗</div>
-        <h3>Exponentiële groei</h3>
-        <p>Reken groei en afname uit met formules.</p>
-      </a>
-    </section>
+<div>
+<div class="hero-kicker">Wiskunde tools</div>
+<p>Kies hieronder een formule en begin direct.</p>
+</div>
 
-    <section class="info-section">
-      <div class="section-title">Meer over de website</div>
-      <div class="section-subtitle">Lees meer over het team en bekijk de veelgestelde vragen.</div>
+</section>
 
-      <a href="overons.html" class="info-card">
-        <div class="card-icon">i</div>
-        <h3>Over ons en FAQ</h3>
-        <p>Bekijk meer informatie over Rekenmeester, het doel van de website en antwoorden op veelgestelde vragen.</p>
-      </a>
-    </section>
-  </main>
 
-  <footer class="footer">
-    © 2026 Rekenmeester • Informatica project
-  </footer>
+<div class="section-title">Formules</div>
+<div class="section-subtitle">Kies een tool.</div>
+
+
+<section class="formula-grid">
+
+<a href="abc.html" class="formula-card">
+<div class="card-icon">x²</div>
+<h3>ABC formule</h3>
+<p>Los vergelijkingen van de vorm ax² + bx + c = 0 op.</p>
+</a>
+
+<a href="pythagoras.html" class="formula-card">
+<div class="card-icon">△</div>
+<h3>Pythagoras</h3>
+<p>Bereken een zijde van een rechthoekige driehoek.</p>
+</a>
+
+<a href="goniometrie.html" class="formula-card">
+<div class="card-icon">∠</div>
+<h3>Goniometrie</h3>
+<p>Werk met sin, cos en tan bij hoeken en zijdes.</p>
+</a>
+
+<a href="sigma.html" class="formula-card">
+<div class="card-icon">σ</div>
+<h3>Standaardafwijking</h3>
+<p>Bereken de spreiding van een rij getallen.</p>
+</a>
+
+<a href="groei.html" class="formula-card">
+<div class="card-icon">↗</div>
+<h3>Exponentiële groei</h3>
+<p>Reken groei en afname uit met formules.</p>
+</a>
+
+</section>
+
+
+<section class="info-section">
+
+<div class="section-title">Meer over de website</div>
+<div class="section-subtitle">Lees meer over het team en bekijk de veelgestelde vragen.</div>
+
+<a href="overons.html" class="info-card">
+<div class="card-icon">i</div>
+<h3>Over ons en FAQ</h3>
+<p>Bekijk meer informatie over Rekenmeester en antwoorden op veelgestelde vragen.</p>
+</a>
+
+</section>
+
+</main>
+
+
+<footer class="footer">
+© 2026 Rekenmeester • Informatica project
+</footer>
+
 </body>
 </html>
 
