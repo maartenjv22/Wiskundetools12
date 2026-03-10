@@ -16,15 +16,7 @@
       --card-border: rgba(255,255,255,0.10);
       --text-soft: rgba(255,255,255,0.85);
     }
-.footer {
-  width: 100%;
-  text-align: center;
-  padding: 20px;
-  margin-top: 40px;
-  font-size: 14px;
-  color: rgba(255,255,255,0.6);
-  border-top: 1px solid rgba(255,255,255,0.08);
-}
+
     * {
       box-sizing: border-box;
     }
@@ -52,7 +44,8 @@
       align-items: center;
       padding: 0 28px;
       background: rgba(8, 12, 22, 0.55);
-      backdrop-filter: blur(8px);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       border-bottom: 1px solid rgba(255,255,255,0.08);
       z-index: 1000;
     }
@@ -78,74 +71,89 @@
 
     .scroll-banner {
       overflow: hidden;
-      white-space: nowrap;
       flex: 1;
       margin-left: 18px;
       height: 28px;
       display: flex;
       align-items: center;
+      position: relative;
+    }
+
+    .scroll-track {
+      display: flex;
+      width: max-content;
+      animation: scroll-loop 24s linear infinite;
     }
 
     .scroll-text {
-      display: inline-block;
-      padding-left: 100%;
-      animation: scroll-left 18s linear infinite;
+      flex-shrink: 0;
+      padding-right: 60px;
       color: var(--accent-light);
       font-size: 14px;
       letter-spacing: 2px;
       text-transform: uppercase;
-      text-shadow: 0 0 8px rgba(77, 163, 255, 0.35);
+      text-shadow: 0 0 10px rgba(77, 163, 255, 0.28);
+      white-space: nowrap;
     }
 
-    @keyframes scroll-left {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-100%); }
+    @keyframes scroll-loop {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
     }
 
     .hero {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 120px 20px 60px;
-}
-   .hero-box {
-  width: 100%;
-  max-width: 820px;
-  text-align: center;
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.10),
-    rgba(255, 255, 255, 0.04)
-  );
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255,255,255,0.18);
-  border-radius: 30px;
-  box-shadow:
-    0 20px 60px rgba(0,0,0,0.38),
-    0 0 30px rgba(77,163,255,0.10);
-  padding: 42px 28px 34px;
-  margin-bottom: 36px;
-}
-   .hero-box h1 {
-  margin: 0 0 12px;
-  font-size: 46px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  background: linear-gradient(90deg, #ffffff, var(--accent-light));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-   .hero-box p {
-  margin: 0;
-  font-size: 15px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.88);
-  line-height: 1.6;
-}
+      min-height: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 120px 20px 60px;
+      animation: fade-up 0.8s ease;
+    }
+
+    .hero-box {
+      width: 100%;
+      max-width: 820px;
+      text-align: center;
+      background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.10),
+        rgba(255, 255, 255, 0.04)
+      );
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 30px;
+      box-shadow:
+        0 20px 60px rgba(0,0,0,0.38),
+        0 0 30px rgba(77,163,255,0.10);
+      padding: 42px 28px 34px;
+      margin-bottom: 36px;
+    }
+
+    .hero-box h1 {
+      margin: 0 0 12px;
+      font-size: 46px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      background: linear-gradient(90deg, #ffffff, var(--accent-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-box p {
+      margin: 0;
+      font-size: 15px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.88);
+      line-height: 1.6;
+    }
+
     .section-title {
       width: 100%;
       max-width: 1100px;
@@ -176,30 +184,42 @@
       margin-bottom: 42px;
     }
 
-   .formula-card,
-.info-card {
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  border-radius: 22px;
-  padding: 22px;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  box-shadow: 0 12px 30px rgba(0,0,0,0.28);
-  transition:
-    transform 0.28s ease,
-    background 0.28s ease,
-    box-shadow 0.28s ease,
-    border-color 0.28s ease;
-}
+    .formula-card,
+    .info-card {
+      text-decoration: none;
+      color: white;
+      display: block;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 22px;
+      padding: 22px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.28);
+      transition:
+        transform 0.28s ease,
+        background 0.28s ease,
+        box-shadow 0.28s ease,
+        border-color 0.28s ease;
+      animation: fade-up 0.8s ease;
+    }
+
     .formula-card:hover,
-.info-card:hover {
-  transform: translateY(-10px) scale(1.015);
-  background: rgba(20, 26, 42, 0.92);
-  border-color: rgba(126, 195, 255, 0.55);
-  box-shadow:
-    0 22px 45px rgba(0,0,0,0.30),
-    0 0 24px rgba(77, 163, 255, 0.18);
-}
+    .info-card:hover {
+      transform: translateY(-10px) scale(1.015);
+      background: rgba(20, 26, 42, 0.92);
+      border-color: rgba(126, 195, 255, 0.55);
+      box-shadow:
+        0 22px 45px rgba(0,0,0,0.30),
+        0 0 24px rgba(77, 163, 255, 0.18);
+    }
+
+    .formula-card:hover .card-icon,
+    .info-card:hover .card-icon {
+      transform: scale(1.08);
+      box-shadow: 0 10px 26px rgba(77, 163, 255, 0.40);
+    }
+
     .card-icon {
       width: 56px;
       height: 56px;
@@ -212,6 +232,7 @@
       font-size: 24px;
       margin-bottom: 18px;
       box-shadow: 0 8px 20px rgba(77, 163, 255, 0.25);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
     }
 
     .formula-card h3,
@@ -226,7 +247,7 @@
     .formula-card p,
     .info-card p {
       margin-top: 0;
-      margin-bottom: 18px;
+      margin-bottom: 0;
       color: rgba(255,255,255,0.88);
       line-height: 1.5;
       text-transform: none;
@@ -237,23 +258,6 @@
       min-height: 48px;
     }
 
-    .card-btn {
-      display: inline-block;
-      padding: 11px 18px;
-      border-radius: 10px;
-      background: linear-gradient(135deg, var(--accent), var(--accent-dark));
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      transition: 0.2s;
-      box-shadow: 0 8px 18px rgba(77, 163, 255, 0.22);
-    }
-
-    .card-btn:hover {
-      background: linear-gradient(135deg, var(--accent-light), var(--accent));
-      transform: translateY(-1px);
-    }
-
     .info-section {
       width: 100%;
       max-width: 1100px;
@@ -261,6 +265,28 @@
 
     .info-card {
       max-width: 420px;
+      margin-top: 10px;
+    }
+
+    .footer {
+      width: 100%;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+      font-size: 14px;
+      color: rgba(255,255,255,0.6);
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    @keyframes fade-up {
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     @media (max-width: 800px) {
@@ -310,8 +336,13 @@
     </a>
 
     <div class="scroll-banner">
-      <div class="scroll-text">
-        Welkom bij Rekenmeester • Bereken snel wiskundeformules • ABC • Pythagoras • Goniometrie • Standaardafwijking • Exponentiële groei •
+      <div class="scroll-track">
+        <div class="scroll-text">
+          Welkom bij Rekenmeester • Bereken snel wiskundeformules • ABC • Pythagoras • Goniometrie • Standaardafwijking • Exponentiële groei •
+        </div>
+        <div class="scroll-text">
+          Welkom bij Rekenmeester • Bereken snel wiskundeformules • ABC • Pythagoras • Goniometrie • Standaardafwijking • Exponentiële groei •
+        </div>
       </div>
     </div>
   </header>
@@ -326,56 +357,52 @@
     <div class="section-subtitle">Kies hieronder een formule en ga direct aan de slag.</div>
 
     <section class="formula-grid">
-      <div class="formula-card">
+      <a href="abc.html" class="formula-card">
         <div class="card-icon">x²</div>
         <h3>ABC formule</h3>
         <p>Los vergelijkingen van de vorm ax² + bx + c = 0 op.</p>
-        <a href="abc.html" class="card-btn">Open</a>
-      </div>
+      </a>
 
-      <div class="formula-card">
+      <a href="pythagoras.html" class="formula-card">
         <div class="card-icon">△</div>
         <h3>Pythagoras</h3>
         <p>Bereken een zijde van een rechthoekige driehoek.</p>
-        <a href="pythagoras.html" class="card-btn">Open</a>
-      </div>
+      </a>
 
-      <div class="formula-card">
+      <a href="goniometrie.html" class="formula-card">
         <div class="card-icon">∠</div>
         <h3>Goniometrie</h3>
         <p>Werk met sin, cos en tan bij hoeken en zijdes.</p>
-        <a href="goniometrie.html" class="card-btn">Open</a>
-      </div>
+      </a>
 
-      <div class="formula-card">
+      <a href="sigma.html" class="formula-card">
         <div class="card-icon">σ</div>
         <h3>Standaardafwijking</h3>
         <p>Bereken de spreiding van een rij getallen.</p>
-        <a href="sigma.html" class="card-btn">Open</a>
-      </div>
+      </a>
 
-      <div class="formula-card">
+      <a href="groei.html" class="formula-card">
         <div class="card-icon">↗</div>
         <h3>Exponentiële groei</h3>
         <p>Reken groei en afname uit met formules.</p>
-        <a href="groei.html" class="card-btn">Open</a>
-      </div>
+      </a>
     </section>
 
     <section class="info-section">
       <div class="section-title">Meer over de website</div>
       <div class="section-subtitle">Lees meer over het team en bekijk de veelgestelde vragen.</div>
 
-      <div class="info-card">
+      <a href="overons.html" class="info-card">
         <div class="card-icon">i</div>
         <h3>Over ons en FAQ</h3>
         <p>Bekijk meer informatie over Rekenmeester, het doel van de website en antwoorden op veelgestelde vragen.</p>
-        <a href="overons.html" class="card-btn">Open</a>
-<footer class="footer">
-  © 2026 Rekenmeester • Informatica project
-</footer>
-      </div>
+      </a>
     </section>
   </main>
+
+  <footer class="footer">
+    © 2026 Rekenmeester • Informatica project
+  </footer>
 </body>
 </html>
+
